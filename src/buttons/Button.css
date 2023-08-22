@@ -1,0 +1,69 @@
+.Button {
+    alignment: center;
+    background-color: #00BFA6;
+    padding: 14px 40px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 2px dashed #00BFA6;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.Button:hover {
+    transition: .4s;
+    border: 2px dashed #00BFA6;
+    background-color: #fff;
+    color: #00BFA6;
+}
+
+.Button:active {
+    background-color: #87dbd0;
+}
+
+.Yes-button {
+    font-size: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+
+    padding: 1em 2.5em 1em 2.5em;
+    border: none;
+    background: #fff;
+    transition: all 0.1s linear;
+    box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+.Yes-button:active {
+    transform: scale(0.95);
+}
+
+.Yes-button:hover {
+    background-color: #00BFA6;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.No-button {
+    font-size: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+
+    padding: 1em 2.5em 1em 2.5em;
+    border: none;
+    background: #fff;
+    transition: all 0.1s linear;
+    box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+.No-button:active {
+    transform: scale(0.95);
+}
+
+.No-button:hover {
+    background-color: #ff3300;
+    color: #fff;
+    transform: scale(1.1);
+}
+

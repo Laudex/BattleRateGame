@@ -1,0 +1,15 @@
+.Currency-table-main {
+    padding: 10px;
+}
+
+.Currency-table-main > table {
+    border-collapse: collapse;
+}
+
+.Currency-table-main > th, td {
+    padding: 5px;
+}
+
+.Currency-table-main > table, th, td {
+    border: 3px solid;
+}

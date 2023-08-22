@@ -1,0 +1,21 @@
+.Main-layout {
+    width: 500px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right, #ff512f, #f09819);
+    padding-bottom: 30px;
+    margin: auto;
+}
+.Main-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: center;
+}
+.Main-buttons > button {
+    margin: 5px;
+}
+

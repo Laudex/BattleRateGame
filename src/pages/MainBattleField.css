@@ -1,0 +1,22 @@
+.Choose-buttons {
+    display: flex;
+    margin: 10px;
+}
+button + button {
+    margin-left: 10px;
+}
+
+.RateAndCounter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Inequality {
+    margin-top: 20px;
+    font-size: 30px;
+}
+.Counter {
+    font-size: 70px;
+    color: #333300;
+}
