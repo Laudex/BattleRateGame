@@ -3,20 +3,27 @@ import './buttons/Button.css'
 import Button from "./buttons/Button";
 import GamePage from "./pages/GamePage";
 import TableButtons from "./buttons/TableButtons";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import CurrencyTable from "./pages/CurrencyTable";
+import Axios from 'axios';
 
 function Battle() {
     const [showGamePage, setShowGamePage] = useState(false)
     const [showCurrencyTable, setShowCurrencyTable] = useState(false)
+    const [initialCurrency, setInitialCurrency] = useState("rub");
 
     function startGame(isStarted) {
         setShowGamePage(isStarted)
     }
 
-    function openCurrencyTable() {
-        setShowCurrencyTable(prevState => !prevState)
-    }
+    useEffect(() => {
+        console.log("Calling")
+        Axios.get(
+            `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${initialCurrency}.json`)
+            .then((res) => {
+                console.log(res.data[initialCurrency])
+            })
+    }, [initialCurrency])
 
     return (
         <div className="Main-layout">

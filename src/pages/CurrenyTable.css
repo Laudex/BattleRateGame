@@ -4,12 +4,40 @@
 
 .Currency-table-main > table {
     border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .Currency-table-main > th, td {
     padding: 5px;
 }
 
-.Currency-table-main > table, th, td {
-    border: 3px solid;
+.Table-header {
+    color: #fff;
+    background-color: #6c7ae0;
+    font-family: Lato-Bold;
+    font-size: 18px;
+}
+
+.Header-cell {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+}
+
+.Table-cell {
+    background-color: #fff;
+    font-family: Lato-Regular;
+    font-size: 18px;
+    color: gray;
+    text-align: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+
+.Icon {
+    width: 30px;
+    height: 30px;
+    padding-right:5px;
 }

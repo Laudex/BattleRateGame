@@ -12,14 +12,13 @@ function MainBattleField() {
     const [rightNum, setRightNum] = useState(randomNumberInRange(1, 100))
     const [currency, setCurrency] = useState(randomCurrency())
     const [equal, setEqual] = useState(">")
+    const [rate, setRate] = useState(0)
 
 
     function yesButton() {
         if (equal == ">") {
             const leftRate = data.find((data) => data.name == currency[0]).rate
             const rightRate = data.find((data) => data.name == currency[1]).rate
-            console.log(leftRate)
-            console.log(rightRate)
             if (leftNum * leftRate > rightNum * rightRate) {
                 increase()
             } else {
@@ -48,6 +47,7 @@ function MainBattleField() {
 
     function increase() {
         setCounter(prevState => prevState + 5)
+        setRate(prevState => prevState + 1)
         updateRandomValues()
     }
 
@@ -75,10 +75,11 @@ function MainBattleField() {
         if (counter == 0) {
             setGameOver(true)
         }
-    })
+    }, [counter])
 
     return (
         <div>
+            <div>Your rate: {rate}</div>
             <div className="RateAndCounter">
                 <div className="Inequality">{leftNum} {currency[0]} {equal} {rightNum} {currency[1]}</div>
                 <div className="Counter">{counter}</div>

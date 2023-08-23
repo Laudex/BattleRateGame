@@ -1,3 +1,9 @@
+import euroIcon from '../assets/icons/european-union.png'
+import usdIcon from '../assets/icons/united-states.png'
+import kztIcon from '../assets/icons/kazakhstan.png'
+import gbpIcon from '../assets/icons/united-kingdom.png'
+import jpyIcon from '../assets/icons/japan.png'
+
 const currencyArray = ["USD", "EUR", "KZT", "GBP", "JPY"]
 
 export const randomNumberInRange = (min, max) => {
@@ -18,4 +24,19 @@ export const randomCurrency = () => {
     }
 
     return currency
+}
+
+export const getCurrencyIcon = (currencyName) => {
+    switch (currencyName) {
+        case 'EUR':
+            return euroIcon
+        case 'USD':
+            return usdIcon
+        case 'KZT':
+            return kztIcon
+        case 'GBP':
+            return gbpIcon
+        case 'JPY':
+            return jpyIcon
+    }
 }

@@ -19,4 +19,5 @@ button + button {
 .Counter {
     font-size: 70px;
     color: #333300;
+    font-family: 'David Libre', serif;
 }
