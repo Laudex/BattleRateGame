@@ -1,22 +1,11 @@
 .Main-layout {
-    width: 500px;
-    height: 100%;
+    width: 375px;
+    height: 812px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    background-image: linear-gradient(to right, #ff512f, #f09819);
-    padding-bottom: 30px;
+    background: linear-gradient(137deg, #9F7FFF 0%, #8055FE 100%);
     margin: auto;
-}
-.Main-buttons {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    justify-content: center;
-}
-.Main-buttons > button {
-    margin: 5px;
 }
 
 .Table-buttons {

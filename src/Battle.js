@@ -1,42 +1,104 @@
 import './Battle.css'
 import './buttons/Button.css'
 import Button from "./buttons/Button";
-import GamePage from "./pages/GamePage";
 import TableButtons from "./buttons/TableButtons";
-import {useEffect, useState} from "react";
-import CurrencyTable from "./pages/CurrencyTable";
+import {useCallback, useEffect, useState} from "react";
+import ActualCoursePage from "./pages/actualcourse/ActualCoursePage";
 import Axios from 'axios';
+import StartPage from "./pages/startpage/StartPage";
+import MainBattleField from "./pages/mainbattlefield/MainBattleField";
+import GameOverPage from "./pages/gameover/GameOverPage";
+import {getCurrentDate} from "./utils/Utils"
 
 function Battle() {
     const [showGamePage, setShowGamePage] = useState(false)
-    const [showCurrencyTable, setShowCurrencyTable] = useState(false)
-    const [initialCurrency, setInitialCurrency] = useState("rub");
+    const [gameOver, setGameOver] = useState(false)
+    const [totalScore, setTotalScore] = useState(0)
+    const [showActualCourse, setShowActualCourse] = useState(false)
+    const [initialCurrency, setInitialCurrency] = useState("usd");
+    /*const [currencyJson, setCurrencyJson] = useState({
+        usd: 0,
+        eur: 0,
+        rub: 0,
+        gbp: 0,
+        jpy: 0
+    });*/
+    const [currencyJson, setCurrencyJson] = useState([]);
 
-    function startGame(isStarted) {
-        setShowGamePage(isStarted)
+    function startGame() {
+        setShowGamePage(true)
+        setShowActualCourse(false)
+        setGameOver(false)
     }
 
-    useEffect(() => {
-        console.log("Calling")
-        Axios.get(
-            `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${initialCurrency}.json`)
-            .then((res) => {
-                console.log(res.data[initialCurrency])
-            })
+    function endGame() {
+        setGameOver(true)
+        setShowGamePage(false)
+    }
+
+    function openActualCourse() {
+        setShowActualCourse(true)
+        setGameOver(false)
+    }
+
+    function hideActualCourse() {
+        setShowActualCourse(false)
+    }
+
+    const setCurrencyData = useCallback((res) => {
+        console.log(res)
+        const data = res.data[initialCurrency]
+        setCurrencyJson([
+            {
+                name: 'EUR',
+                rate: data.eur
+            },
+            {
+                name: 'USD',
+                rate: data.usd
+            },
+            {
+                name: 'RUB',
+                rate: data.rub
+            },
+            {
+                name: 'GBP',
+                rate: data.gbp
+            },
+            {
+                name: 'JPY',
+                rate: data.jpy
+            },
+        ])
     }, [initialCurrency])
+
+    useEffect(() => {
+        Axios.get(
+            `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/${getCurrentDate()}/currencies/${initialCurrency}.json`)
+            .then(setCurrencyData)
+    }, [initialCurrency, setCurrencyData])
+
+    /*useEffect(() => {
+        Axios.get(`http://localhost:8080/test`).then(
+            (res) => {
+                console.log(res)
+            }
+        )
+    })*/
 
     return (
         <div className="Main-layout">
-            {!showGamePage && <div className="Main-buttons">
-                <Button classname="Button" func={e => startGame(true)} text="Start game"/>
-                <TableButtons setShowCurrencyTable={setShowCurrencyTable} showCurrencyTable={showCurrencyTable}/>
-            </div>}
-            {showGamePage
-                && <div>
-                    <GamePage func={e => startGame(false)}/>
-                    <TableButtons setShowCurrencyTable={setShowCurrencyTable} showCurrencyTable={showCurrencyTable}/>
-                </div>}
-            {showCurrencyTable && <CurrencyTable/>}
+            {gameOver
+                ? <GameOverPage score={totalScore} openActualCourse={openActualCourse} startGame={startGame}/>
+                : <div>
+                    {showGamePage ?
+                        <MainBattleField currencyJson={currencyJson} endGame={endGame} setTotalScore={setTotalScore}/>
+                        : showActualCourse ?
+                            <ActualCoursePage currencyJson={currencyJson} hideActualCourse={hideActualCourse} startGame={startGame}/> :
+                            <StartPage openActualCourse={openActualCourse} startGame={startGame}/>
+                    }
+                </div>
+            }
         </div>
     )
 }
